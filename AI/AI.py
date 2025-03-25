@@ -17,7 +17,11 @@ if not api_key:
     raise ValueError("Missing OPENAI_API_KEY environment variable")
 
 # יש להגדיר את הנתיב של Tesseract אם נדרש (למשתמשי Windows)
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+if os.name == "nt":  # Windows
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+else:  # Linux (Render)
+    pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 
 app = Flask(__name__)
 CORS(app)  # מאפשר לכל הדומיינים לקרוא ל-API
