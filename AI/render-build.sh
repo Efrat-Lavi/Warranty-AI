@@ -1,13 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# עדכון חבילות והתקנה של leptonica ו-Tesseract
+# עדכון מערכת והתקנת תלויות עבור Tesseract
 apt-get update
-apt-get install -y \
-  tesseract-ocr \
-  libleptonica-dev \
-  g++ \
-  pkg-config \
-  python3-dev
+apt-get install -y tesseract-ocr libleptonica-dev g++ python3-dev pkg-config
 
-# התקנת חבילות Python
+# התקנה של התלויות של Python
 pip install -r requirements.txt
