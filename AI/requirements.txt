@@ -1,0 +1,8 @@
+flask
+flask-cors
+requests
+pymupdf  # PyMuPDF
+pytesseract
+pillow
+openai
+python-dotenv
