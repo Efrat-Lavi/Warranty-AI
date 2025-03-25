@@ -82,7 +82,7 @@ def extract_text_from_image(file_stream):
     """ חילוץ טקסט מתמונה באמצעות OCR """
     try:
         image = Image.open(file_stream)
-        image = enhance_image(image)  # שיפור הקריאות
+        # image = enhance_image(image)  # שיפור הקריאות
         text = pytesseract.image_to_string(image, lang="heb+eng")  # תמיכה בעברית ואנגלית
         return clean_and_convert_quotes(text.strip())
     except Exception as e:
@@ -130,7 +130,7 @@ def generate():
     is_warranty = query_ai(verification_prompt).lower()
 
     if is_warranty != "yes":
-        return jsonify({'message': "הקובץ לא מזוהה כתעודת אחריות"}), 400
+        return jsonify({'message': "The file is not recognized as a warranty certificate"}), 400
 
     # אם זה אכן תעודת אחריות, שולחים לניתוח
     full_prompt = f"{EXTRACTION_PROMPT}\n\nExtract the warranty details from the following text:\n{extracted_text}"
