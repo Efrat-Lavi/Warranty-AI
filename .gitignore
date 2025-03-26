@@ -1,28 +1,20 @@
-# קבצים הקשורים ל-Python
+# קבצים של Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-
-# קובץ הסביבה הווירטואלית (אם השתמשת ב-venv)
 venv/
 .env
 
-# קבצים של מערכת ההפעלה
+# קבצי מערכת ו-IDE
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
 
 # קבצי לוג
 *.log
 
-# קבצי IDE (אם את משתמשת ב-VS Code, PyCharm וכו')
-.vscode/
-.idea/
-*.iml
-
-# קבצי תלות של pip
+# קבצי pip לא נחוצים
 pip-log.txt
 pip-delete-this-directory.txt
-
-# אם את משתמשת ב-Render, מומלץ להוסיף את הקובץ הבא כדי למנוע העלאת נתונים אישיים:
-render.yaml
