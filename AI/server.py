@@ -19,7 +19,7 @@ app = Flask(__name__)
 CORS(app) 
 client = OpenAI()
 
-VERIFY_PROMPT = """Analyze the following text and determine if it represents a warranty certificate. 
+VERIFY_PROMPT = """Analyze the following text and determine if it represents a warranty certificate or a recipt. 
 Respond only with 'yes' or 'no' (no extra words, explanations, or formatting).
 Text:
 """
@@ -32,7 +32,8 @@ Always return **ONLY** a valid JSON object with the following structure, **witho
     "company_name": "Company Name",
     "expiration_date": "YYYY-MM-DD"
 }
-If a field is missing, set its value to null.
+If the expiration date is missing but a purchase date is found, set the expiration date to one year after the purchase date.
+If another field is missing, set its value to null.
 Your response **MUST begin with '{' and end with '}'** with no additional text.
 Extract the warranty details from the attached file.
 """
@@ -106,9 +107,9 @@ def process_file():
         is_warranty = verify_ai(base64_image).lower()
         if is_warranty == "yes":
             response_text = query_ai(base64_image)
-            return jsonify({"warranty": True, "data": response_text})
+            return response_text
         else:
-            return jsonify({"warranty": False, "message": "Not a warranty document"})
+            return jsonify({"error": "Not a warranty document"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
