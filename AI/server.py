@@ -9,7 +9,7 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 import json
-load_dotenv()  # טוען משתנים מקובץ .env
+load_dotenv() 
 api_key = os.getenv('OPENAI_API_KEY')
 
 if not api_key:
@@ -109,7 +109,7 @@ def process_file():
             response_text = query_ai(base64_image)
             return response_text
         else:
-            return jsonify({"error": "Not a warranty document"})
+            return jsonify({"error": "Not a warranty document"}),400
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
